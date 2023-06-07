@@ -1,0 +1,20 @@
+# task_manager.py
+
+from threading import Thread
+from file_handler import FileHandler
+
+class TaskManager:
+    def __init__(self):
+        self.file_handler = FileHandler()
+        self.threads = []
+
+    def start_task(self, csv_path):
+        # Use GitHub Copilot to generate code to start a new task
+        thread = Thread(target=self.file_handler.load_csv, args=(csv_path,))
+        thread.start()
+        self.threads.append(thread)
+
+    def wait_for_all_tasks(self):
+        # Use GitHub Copilot to generate code to wait for all tasks to complete
+        for thread in self.threads:
+            thread.join()
