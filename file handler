@@ -1,0 +1,19 @@
+# file_handler.py
+
+import pandas as pd
+
+class FileHandler:
+    def __init__(self):
+        self.data = None
+
+    def load_csv(self, path):
+        # Use GitHub Copilot to generate code to load a CSV file into a DataFrame
+        self.data = pd.read_csv(path)
+
+    def modify_files(self):
+        # Use GitHub Copilot to generate code to modify IES, LDT and CIE files based on self.data
+        pass
+
+    def save_files(self):
+        # Use GitHub Copilot to generate code to save modified files
+        pass
