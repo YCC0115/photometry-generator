@@ -1,0 +1,8 @@
+# Process source file
+def process_source_file(source_file, csv_data):
+    """
+    Process the source file using the given csv_data.
+    This function should return a modified source file.
+    Please fill in the details.
+    """
+    pass
