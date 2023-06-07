@@ -1,0 +1,7 @@
+# Execute tasks in parallel
+def execute_in_parallel(tasks):
+    """
+    Execute the given tasks in parallel.
+    Please fill in the details.
+    """
+    pass
