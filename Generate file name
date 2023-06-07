@@ -1,0 +1,15 @@
+# Generate file name
+def generate_file_name(csv_data, format_rules):
+    """
+    Generate a new file name based on the csv_data and format_rules.
+    Please fill in the details.
+    """
+    pass
+
+# Save new file
+def save_new_file(file, path):
+    """
+    Save the new file to the given path.
+    Please fill in the details.
+    """
+    pass
