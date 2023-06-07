@@ -1,86 +1,19 @@
-from DataProcessor import DataProcessor
+# gui.py
+
 import tkinter as tk
-from tkinter import filedialog, ttk
-import pandas as pd
-from pandastable import Table
-import threading
+from task_manager import TaskManager
 
-class UI:
-    def __init__(self, master):
+class Application(tk.Frame):
+    def __init__(self, master=None):
+        super().__init__(master)
         self.master = master
-        self.master.title('UI Module')
-        self.frame = tk.Frame(self.master)
-        self.frame.pack(fill='both', expand=True)
+        self.pack()
+        self.create_widgets()
 
-        # Initialize file_handler as None
-        self.file_handler = None
-
-        # Add buttons
-        self.open_button = tk.Button(self.frame, text='Open', command=self.open_file)
-        self.open_button.pack(side='left')
-
-        self.save_button = tk.Button(self.frame, text='Save', command=self.save_file)
-        self.save_button.pack(side='left')
-
-        self.start_task_button = tk.Button(self.frame, text='Start Task', command=self.start_task)
-        self.start_task_button.pack(side='left')
-
-        # Add table
-        self.data_frame = tk.Frame(self.frame)
-        self.data_frame.pack(fill='both', expand=True)
-        self.table = None
-
-        # Add progress bar
-        self.progress = ttk.Progressbar(self.frame, length=100, mode='determinate')
-        self.progress.pack(side='left')
-
-    def open_file(self):
-        filepath = filedialog.askopenfilename(filetypes=[('CSV Files', '*.csv'), ('All Files', '*.*')])
-        if not filepath:
-            return
-
-        # Initialize DataProcessor with the chosen file
-        self.file_handler = DataProcessor(filepath)
-
-        self.df = pd.DataFrame(self.file_handler.data)
-
-        if self.table is not None:
-            self.table.destroy()
-
-        self.table = Table(self.data_frame, dataframe=self.df, showtoolbar=True, showstatusbar=True)
-        self.table.show()
-
-    def save_file(self):
-        filepath = filedialog.asksaveasfilename(defaultextension='.csv', filetypes=[('CSV Files', '*.csv'), ('All Files', '*.*')])
-        if not filepath:
-            return
-
-        self.file_handler.data = self.table.model.df.to_dict('list')
-        self.file_handler.write_csv(filepath)
-
-    def start_task(self):
-        # Check if file_handler and data are initialized
-        if self.file_handler is None or self.file_handler.data is None:
-            raise Exception('Please open a CSV file before starting the task.')
-        
-        # Define the task function
-        def task_func():
-            total_rows = len(self.file_handler.data['Luminaire'])
-            for i in range(total_rows):
-                data_row = {h: self.file_handler.data[h][i] for h in self.file_handler.data}
-                original_file_path = data_row['template_path']  # Get the template path from the row
-                file_name = self.file_handler.generate_file_name(data_row)
-                file_content = self.file_handler.generate_file_content(original_file_path, data_row)
-                save_path = data_row['Save as']
-                self.file_handler.write_file(f"{save_path}/{file_name}", file_content)
-                # Update progress bar
-                self.progress['value'] = (i+1) / total_rows * 100
-                self.master.update_idletasks()
-
-        # Start the task in a new thread
-        threading.Thread(target=task_func).start()
+    def create_widgets(self):
+        # Use GitHub Copilot to generate code to create GUI widgets
+        pass
 
 root = tk.Tk()
-root.geometry('1920x1080')
-app = UI(root)
-root.mainloop()
+app = Application(master=root)
+app.mainloop()
