@@ -1,0 +1,16 @@
+# Load the source file
+def load_source_file(path):
+    """
+    Load the source file from the given path.
+    Please fill in the details.
+    """
+    pass
+
+# Load the CSV data
+def load_csv_data(path):
+    """
+    Load the CSV data from the given path.
+    This function should return a DataFrame.
+    Please fill in the details.
+    """
+    pass
